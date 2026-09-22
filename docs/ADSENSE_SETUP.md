@@ -9,7 +9,7 @@
 
 ## AdSense 등록
 1. 운영자의 Google AdSense 계정에서 사이트 > 새 사이트에 heic-jpeg.com을 추가합니다.
-2. 표시되는 실제 publisher ID를 NEXT_PUBLIC_ADSENSE_CLIENT에 설정합니다. 예시나 다른 계정의 ID를 사용하지 않습니다.
+2. 실제 화면에서 확인한 publisher ID는 src/config/adsense.json에 저장되어 있습니다. NEXT_PUBLIC_ADSENSE_CLIENT 환경변수로 재정의할 수 있습니다. prebuild와 Next.js에 동일한 환경변수를 전달하세요. 예시나 다른 계정의 ID를 사용하지 않습니다.
 3. npm run build는 실제 ID로 ads.txt와 google-adsense-account 메타 태그를 생성합니다. npm run deploy 후 공개 HTML 및 /ads.txt를 확인합니다.
 4. AdSense 소유 확인 방법 중 메타 태그 또는 ads.txt를 선택합니다. 본 사이트는 사용자 동의 전 광고 JS가 로드되지 않으므로 스크립트 기반 확인만 의존하지 않습니다.
 5. 사이트 검토를 요청하고 상태(준비 중/검토 필요/준비됨)를 실제 화면에서 확인합니다. 배포 완료와 승인 완료는 다릅니다.

@@ -5,7 +5,7 @@
 - 일본어 15페이지: 도구 1, 안내·정책 7, 가이드 목록 1, 가이드 6.
 - canonical, sitemap, robots, OG, WebSite/WebApplication/Article/Breadcrumb 구조화 데이터.
 - 브라우저 내 HEIC/HEIF→JPEG, 메타데이터 미복사, 입력·출력 검증, 결과 미리보기.
-- Google 광고·Google Analytics 기본 비활성. 실제 publisher ID 미확인. Cloudflare 호스팅이 자동 삽입하는 성능 측정은 별도로 개인정보 페이지에 명시.
+- 실제 AdSense publisher ID ca-pub-8403055012653535 적용. 광고 스크립트는 이용자 동의 후 로드되며 수동 광고 슬롯 미설정, Analytics 비활성. Cloudflare 성능 측정은 개인정보 페이지에 명시.
 
 ## 검증
 - lint/typecheck/build 성공.
@@ -18,11 +18,13 @@
 - GitHub https://github.com/yhspress/heic-jpeg 소스 공개. GitHub Actions 35707350321에서 Linux clean install/lint/typecheck/unit/build/Chromium/WebKit 성공.
 - Cloudflare 정적 사이트 heic-jpeg 및 www 리디렉션 heic-jpeg-www 배포. 15개 페이지와 robots/sitemap/OG/ads.txt HTTPS 200, 미존재 URL 404, www→apex 301 확인.
 - 공개 https://heic-jpeg.com 에서 실제 HEIC 변환·JPEG 다운로드 성공. Cloudflare /cdn-cgi/rum 성능 측정 JSON 통신만 허용하여 이미지 바이트·파일명 전송 부재 확인.
-- AdSense/Search Console 등록 미실행: Windows Computer Use가 현재 브라우저 URL을 확정하지 못하여 이 턴에서 중단됨. 사용자 로그인 실패로 확인된 것은 아님.
+- AdSense 등록 완료(2026-09-22): Chrome의 운영자 계정에서 heic-jpeg.com 추가, 메타 태그 소유권 인증 통과, 검토 요청 제출. 실제 화면에 '준비 중 / 사이트의 광고 게재 가능 여부 검토 중 / 리뷰가 요청됨' 확인. 승인 완료 아님.
+- 인증 태그 및 ads.txt 공개 응답 확인. Cloudflare 배포 71c271a0-5bc2-4f59-8947-366b7b54633a. 변경 후 lint/typecheck/build 및 단위 테스트 8개 성공.
+- Search Console 등록은 아직 미실행.
 - Yahoo! JAPAN 자동 수집을 위한 공개 sitemap/robots 준비. 검색 결과 등재 완료를 보장하지 않음.
 
 ## 다음에 이어서 할 작업
-1. 브라우저 제어가 정상인 새 턴에서 AdSense 사이트 추가·실제 publisher ID 확인·재빌드/배포·검토 요청.
+1. AdSense 검토 결과 대기. 승인 후 수동 광고 슬롯과 필요한 지역의 인증 CMP 설정.
 2. Google Search Console 소유권 확인과 sitemap 제출. 현재 Cloudflare OAuth는 DNS 읽기/쓰기 권한이 없으므로 URL-prefix 메타 태그 방법 또는 브라우저 DNS 관리 필요.
 3. Yahoo! JAPAN은 공식 수집 안내에 따라 Google 색인과 실제 노출을 구분해 확인. 별도 등록했다는 주장 금지.
 4. 재시작 시 기존 테스트 전체를 반복하지 말고 변경된 인증 태그/ads.txt/서비스 등록 상태만 검증.

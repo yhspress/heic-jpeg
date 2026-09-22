@@ -12,7 +12,7 @@ Node.js 24 이상. `npm ci`, `npm run dev`.
 - `src/config/mynumberRequirements.ts`: 공식 출처·확인일·파일 조건.
 - `.env.example`: 선택적 AdSense/GA/소유확인 값. 설정은 빌드 시 반영됩니다.
 - 공식 KB/MB는 바이트 환산을 명시하지 않으므로 UI 판정은 1024 기준 참고치입니다. 경계값은 공식 업로드 결과를 우선합니다.
-- `NEXT_PUBLIC_ADSENSE_CLIENT`는 실제 ca-pub-숫자16자리만 허용합니다. 미설정이면 광고 통신 없음. prebuild는 같은 값으로 ads.txt를 생성합니다. 실 ID가 없으면 승인/판매자 등록 완료를 주장하지 않습니다.
+- 실제 AdSense 게시자 ID는 `src/config/adsense.json`에 보관합니다(공개 ID이며 비밀키 아님). `NEXT_PUBLIC_ADSENSE_CLIENT`로 덮어쓸 수 있으며 빈 문자열이면 비활성화합니다. prebuild에도 같은 환경변수를 전달하면 ads.txt와 인증 태그가 일치합니다. 광고 스크립트는 이용자 동의 후에만 로드되며 광고 승인을 의미하지 않습니다.
 
 ## 이미지 처리
 실제 시그니처 검사 → 브라우저 기본 디코더 시도 → 필요할 때 heic-to 1.5.2 지연 로드 → sRGB canvas → JPEG 품질 파라미터 0.92. 원 해상도를 기본 보존하고 EXIF 등 원 메타데이터를 복사하지 않습니다. JPEG의 3성분과 픽셀 수를 검사합니다. 저장 인코딩은 일반적으로 YCbCr이며 RGB 워크플로와 CMYK를 구분합니다.
