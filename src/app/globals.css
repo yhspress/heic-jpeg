@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@theme { --font-sans: Arial, "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif; }
+body { background: #f8fafc; color: #172033; }
+a { text-underline-offset: 3px; }
+html { scroll-behavior: smooth; }
+button, a, input { -webkit-tap-highlight-color: transparent; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid #2563eb; outline-offset: 4px; }
+.eyebrow { color: #1d4ed8; font-size: .8rem; font-weight: 700; letter-spacing: .1em; }
+.skip-link { position: absolute; left: 1rem; top: -8rem; z-index: 100; background: white; padding: 1rem; }
+.skip-link:focus { top: 1rem; }
+@media(prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }

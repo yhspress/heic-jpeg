@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "heic-jpeg",
+  "compatibility_date": "2026-09-22",
+  "routes": [
+    {"pattern":"heic-jpeg.com","custom_domain":true},
+    {"pattern":"www.heic-jpeg.com","custom_domain":true}
+  ],
+  "assets": {
+    "directory": "./out",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  }
+}

@@ -1,0 +1,1 @@
+# No advertising seller is authorized until an actual AdSense publisher ID is configured.

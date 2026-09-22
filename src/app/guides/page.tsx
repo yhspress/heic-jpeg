@@ -1,0 +1,5 @@
+import Link from "next/link";
+import { guides } from "@/content/site-content";
+import { pageMetadata } from "@/lib/seo";
+export const metadata = pageMetadata("マイナンバーカード写真・HEICのガイド", "HEIC形式、iPhoneの保存先、写真の容量、変換エラーとプライバシー。マイナンバーカード申請前の疑問を整理します。", "/guides");
+export default function Guides(){return <div className="mx-auto max-w-5xl px-5 py-14"><p className="eyebrow">写真の準備を、ひとつずつ</p><h1 className="mt-3 text-3xl font-bold">申請前に読む、写真ガイド</h1><p className="mt-5 max-w-2xl leading-8 text-slate-600">形式を変えるだけでは解決しない疑問もあります。保存先、容量、画質、プライバシーを、実際の申請の流れに沿って確認しましょう。</p><div className="mt-9 grid gap-5 md:grid-cols-2">{guides.map((g,i)=><Link key={g.slug} href={`/guides/${g.slug}`} className="group rounded-2xl border border-slate-200 bg-white p-6 transition hover:border-blue-300 hover:shadow-sm"><span className="text-sm font-bold text-blue-700">GUIDE {String(i+1).padStart(2,"0")}</span><h2 className="mt-3 text-xl font-bold leading-relaxed group-hover:text-blue-800">{g.title}</h2><p className="mt-3 text-sm leading-7 text-slate-600">{g.description}</p><span className="mt-5 block text-sm font-bold text-blue-800">ガイドを読む →</span></Link>)}</div></div>}
