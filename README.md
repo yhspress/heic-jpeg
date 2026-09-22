@@ -23,7 +23,8 @@ Node.js 24 이상. `npm ci`, `npm run dev`.
 GitHub: https://github.com/yhspress/heic-jpeg
 Cloudflare Workers Static Assets: `heic-jpeg`. 정적 산출물 `out/`.
 Cloudflare 로그인된 운영 환경에서 `npm run build` 후 `npm run deploy`.
-`wrangler.jsonc`에 apex/www 도메인이 선언되어 있습니다. www는 apex로 리디렉션합니다. 외부 토큰을 소스에 저장하지 않습니다.
+`wrangler.jsonc`에 apex 도메인이 선언되어 있습니다. `wrangler.redirect.jsonc`는 www를 apex로 보내는 별도 초소형 Worker입니다. 초기 설정 또는 리디렉션 변경 시 `npx wrangler deploy --config wrangler.redirect.jsonc`로 배포합니다. 외부 토큰을 소스에 저장하지 않습니다.
+현재 Windows Node 24.11.1의 Wrangler 배포 subprocess가 native exit -1073740791로 종료되는 문제가 확인되어, 배포는 `npm exec --yes --package=node@22 -- node node_modules/wrangler/bin/wrangler.js deploy`로 검증했습니다. Next.js 빌드와 테스트는 Node 24에서 정상입니다.
 GitHub Actions는 lint/typecheck/unit/build/Chromium/WebKit를 실행하고 정적 산출물을 보관합니다. 자동 배포용 자격증명은 임의로 발급하거나 기존 OAuth 토큰을 GitHub에 복사하지 않습니다.
 
 ## 검색·수익화

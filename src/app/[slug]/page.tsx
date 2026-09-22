@@ -26,10 +26,11 @@ const sections: Record<string, Section[]> = {
   ],
   privacy: [
     { heading: "閲覧時の通信と配信サービス", body: <><p>写真をアップロードしなくても、ページやプログラムの取得には通信が発生します。ホスティング・配信事業者はIPアドレス、アクセス日時、要求URL、ブラウザ情報などを配信、セキュリティ対策、障害調査のために取り扱う場合があります。</p><p>配信に関する情報は{external("https://www.cloudflare.com/privacypolicy/", "Cloudflareのプライバシーポリシー")}もご確認ください。</p></> },
+    { heading: "Cloudflareの表示速度測定", body: <p>配信サービスのCloudflare Web Analyticsが、ページの読み込み時間などの性能情報を測定します。写真変換とは別の通信で、変換する写真ファイルを送るための機能ではありません。詳しくは{external("https://developers.cloudflare.com/web-analytics/about/", "Cloudflare Web Analyticsの説明")}をご確認ください。</p> },
     { heading: "お問い合わせの情報", body: <p>メールアドレス、本文に記載されたお名前や問い合わせ内容を、返信・調査・対応履歴の確認に使用します。対応に必要な期間保管し、不要になった情報は適切に削除します。法令に基づく場合を除き、広告目的で第三者へ提供しません。顔写真、個人番号、申請書IDは送らないでください。</p> },
     { heading: "Google AdSenseとCookie", body: <><p>広告を有効にした場合、Googleなどの第三者配信事業者がCookie等を使い、本サイトや他サイトへのアクセス情報に基づく広告を配信する場合があります。現在の配信設定：{ADSENSE_PUBLISHER_ID ? "AdSense設定あり（表示は審査・配信状況によります）。" : "AdSense設定なし。設定がない場合はスクリプトを読み込みません。"}</p><p>{external("https://policies.google.com/technologies/partner-sites?hl=ja", "Googleのパートナーサイトでの情報利用")}と{external("https://policies.google.com/privacy?hl=ja", "Googleプライバシーポリシー")}をご確認ください。パーソナライズ広告は{external("https://myadcenter.google.com/", "マイ アド センター")}で管理できます。Cookieはブラウザの設定でも管理できます。</p></> },
     { heading: "アクセス解析", body: <><p>Google Analyticsは測定IDを設定した場合に限り有効になります。現在の設定：{GA_ID ? "設定あり。" : "設定なし。"} 有効時はCookie等を使って閲覧状況や端末・ブラウザに関する情報を収集する場合があります。変換対象の画像を解析のために送信する機能は設けません。</p><p>収集の制御には{external("https://tools.google.com/dlpage/gaoptout?hl=ja", "Google Analyticsオプトアウト アドオン")}も利用できます。</p></> },
-    { heading: "広告・解析への同意", body: <p>広告または解析の設定がある場合は、許可の選択後に対象のスクリプトを読み込みます。拒否しても写真の変換は利用できます。選択はブラウザのローカルストレージに保存します。ページ下部から許可を取り消すと、それ以降の読み込みを停止します。以前に第三者が保存したCookieはブラウザの設定から削除できます。</p> },
+    { heading: "Google広告・Google Analyticsへの同意", body: <p>Google広告またはGoogle Analyticsの設定がある場合は、許可の選択後に対象のスクリプトを読み込みます。拒否しても写真の変換は利用できます。選択はブラウザのローカルストレージに保存します。ページ下部から許可を取り消すと、それ以降の読み込みを停止します。以前に第三者が保存したCookieはブラウザの設定から削除できます。</p> },
     { heading: "方針の見直しと連絡先", body: <p>サービスや法令等の変更に応じて本方針を見直し、本ページに掲載します。情報の取り扱いや削除のご相談は、heic-jpeg.com 運営者（{mail}）へご連絡ください。</p> },
   ],
   terms: [

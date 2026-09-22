@@ -6,8 +6,8 @@ import { inspectJpeg } from "../src/lib/conversion";
 const routes = ["/", "/about", "/privacy", "/terms", "/contact", "/disclaimer", "/file-privacy", "/sources", "/guides", "/guides/what-is-heic", "/guides/mynumber-heic-jpeg", "/guides/iphone-save-jpeg", "/guides/photo-size-and-quality", "/guides/conversion-troubleshooting", "/guides/photo-privacy"];
 
 test("real HEIC becomes a downloadable metadata-free JPEG without uploading photos", async ({ page }, testInfo) => {
-  const uploads: string[] = [];
-  page.on("request", (request) => { if (["POST", "PUT", "PATCH"].includes(request.method())) uploads.push(request.url()); });
+  const uploads: {url:string;body:Buffer;contentType:string}[] = [];
+  page.on("request", (request) => { if (["POST", "PUT", "PATCH"].includes(request.method())) uploads.push({url:request.url(),body:request.postDataBuffer() ?? Buffer.alloc(0),contentType:request.headers()["content-type"] ?? ""}); });
   await page.goto("/");
   await page.locator('input[type="file"]').setInputFiles(path.resolve("tests/fixtures/example.heic"));
   await expect(page.getByRole("status")).toHaveText("JPEGへの変換が完了しました。", { timeout: 90_000 });
@@ -36,7 +36,19 @@ test("real HEIC becomes a downloadable metadata-free JPEG without uploading phot
     expect(length).toBeGreaterThanOrEqual(2);
     offset += length;
   }
-  expect(uploads).toEqual([]);
+  // Production Cloudflare injects a performance beacon. Permit only that known
+  // JSON endpoint, and assert that no photo filename or image bytes are sent.
+  const source = await readFile(path.resolve("tests/fixtures/example.heic"));
+  for (const upload of uploads) {
+    expect(new URL(upload.url).pathname).toBe("/cdn-cgi/rum");
+    expect(new URL(upload.url).origin).toBe(new URL(page.url()).origin);
+    expect(upload.body.length).toBeLessThan(30_000);
+    expect(upload.contentType).not.toContain("multipart");
+    expect(() => JSON.parse(upload.body.toString("utf8"))).not.toThrow();
+    expect(upload.body.includes(source.subarray(0,64))).toBe(false);
+    expect(upload.body.toString("utf8")).not.toContain(source.subarray(0,64).toString("base64"));
+    expect(upload.body.toString("utf8")).not.toContain("example.heic");
+  }
   await page.getByRole("button", { name: "別の写真を変換" }).click();
   await expect(page.getByRole("button", { name: "HEIC写真を選択", exact: true })).toBeVisible();
 });

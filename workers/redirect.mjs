@@ -1,4 +1,4 @@
-export default {
+const worker = {
   /** @param {Request} request */
   fetch(request) {
     const url = new URL(request.url);
@@ -8,3 +8,4 @@ export default {
     return Response.redirect(url.toString(), 301);
   }
 };
+export default worker;
